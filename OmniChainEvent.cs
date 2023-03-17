@@ -1,17 +1,22 @@
-public class OmniChainEvent
+using Nethereum.ABI.FunctionEncoding.Attributes;
+
+
+namespace Cila 
 {
-    public string ChainID {get;set;}
+    public enum DomainEventType {
+        NFTMinted = 0,
+        NFTTransfered = 1
+    }
+    public class OmniChainEvent
+    {
+        [Parameter("int", "t", 1)]
+        public DomainEventType EventType {get;set;}
 
-    public byte[] Payload {get;set;}
+        [Parameter("bytes", "payload", 2)]
+        public byte[] Payload {get;set;}
 
-    public int BLockNumber {get;set;}
+        [Parameter("int", "eventNumber", 3)]
+        public int EventNumber { get; set; }
 
-    public string AggregateID {get;set;}
-
-    public int EventNumber {get;set;}
-
-    public int EventType {get;set;}
-
-    public string EventHash {get;set;}
-
+    }
 }

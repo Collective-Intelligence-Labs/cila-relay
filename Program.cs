@@ -25,6 +25,7 @@ internal class Program
     private static void ExecuteTask(object state)
     {
         var relayService = (RelayService)state;
+       
         relayService.SyncAllChains();
         Console.WriteLine($"Task executed at {DateTime.UtcNow}");
     }
