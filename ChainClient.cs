@@ -58,6 +58,7 @@ namespace Cila.OmniChain
                 Position = position
             };
             var eventsDto = await handler.CallAsync<PullEventsDTO>(request);
+            Console.WriteLine("Chain Service Pull executed: {0}", eventsDto);
             return eventsDto.Events;
         }
 
@@ -69,7 +70,9 @@ namespace Cila.OmniChain
                 Position = position,
                 AggregateId = "0"
             };
-            return await handler.CallAsync<string>(request);
+            var result = await handler.CallAsync<string>(request);
+            Console.WriteLine("Chain Service Push} executed: {0}", result);
+            return result;
         }
 
         IEnumerable<OmniChainEvent> IChainClient.Pull(int position)
