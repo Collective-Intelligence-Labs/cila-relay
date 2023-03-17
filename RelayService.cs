@@ -16,6 +16,7 @@ namespace Cila
             {
                 var chain1 = new ExecutionChain();
                 chain1.ChainService = new EthChainClient(item.Rpc,item.Contract,item.PrivateKey);
+                Console.WriteLine("Creating chain with RPC: {0}, Private Key: {2}, Contract: {1}", item.Rpc,item.Contract,item.PrivateKey);
                 _chains.Add(chain1);
             }
         }

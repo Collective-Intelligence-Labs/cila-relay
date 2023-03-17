@@ -4,13 +4,13 @@
       "Chains": [
         {
             "Rpc": "https://eth-goerli.public.blastapi.io",
-            "PrivateKey": "0x0123456789012345678901234567890123456789012345678901234567890123",
-            "Contract": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"
+            "PrivateKey": "79901425572232ae8f52f407e48a89d006dfe308e8944bf1d3706036bdfbecde",
+            "Contract": "0xd13d7fB86ea78207385740573F3B281F0009B8c4"
         },
         {
             "Rpc": "https://eth-goerli.public.blastapi.io",
-            "PrivateKey": "0x0123456789012345678901234567890123456789012345678901234567890123",
-            "Contract": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e"
+            "PrivateKey": "79901425572232ae8f52f407e48a89d006dfe308e8944bf1d3706036bdfbecde",
+            "Contract": "0xd13d7fB86ea78207385740573F3B281F0009B8c4"
         }
       ]
     }

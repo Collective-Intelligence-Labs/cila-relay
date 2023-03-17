@@ -57,20 +57,22 @@ namespace Cila.OmniChain
         }
 
         public const int MAX_LIMIT = 1000000;
-        public const string AGGREGATE_ID = "0x0";
+        public const string AGGREGATE_ID = "0x4215a6F868D07227f1e2827A6613d87A5961B5f6";
 
 
         public async Task<IEnumerable<OmniChainEvent>> Pull(int position)
         {
+             Console.WriteLine("Chain Service Pull execution started from position: {0}, aggregate: {1}", position, AGGREGATE_ID);
             var handler = _handler.GetFunction<PullFuncation>();
             var request = new PullFuncation{
                 StartIndex = position,
                 Limit = MAX_LIMIT,
                 AggregateId = AGGREGATE_ID
             };
-            var result =  await handler.CallAsync<List<OmniChainEvent>>(request);
-            Console.WriteLine("Chain Service Pull executed: {0}", result);
-            return result;
+                var result =  await handler.CallAsync<List<OmniChainEvent>>(request);
+                Console.WriteLine("Chain Service Pull executed: {0}", result);
+                return result;
+
             //return eventsDto.Events;
         }
 
