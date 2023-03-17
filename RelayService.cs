@@ -19,7 +19,7 @@ namespace Cila
             {
             
                 var chain1 = new ExecutionChain();
-                chain1.ChainService = new EthChainClient(item.Rpc,item.Contract,item.Abi, item.PrivateKey);
+                chain1.ChainService = new EthChainClient(item.Rpc,item.Contract,item.PrivateKey);
             }
         }
 
