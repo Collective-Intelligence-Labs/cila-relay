@@ -48,12 +48,15 @@ namespace Cila
 
         public void PushNewEvents(IEnumerable<OmniChainEvent> newEvents)
         {
-            ChainService.Pull(Length);
             AddNewEvents(newEvents);
         }
 
         private void AddNewEvents(IEnumerable<OmniChainEvent> newEvents)
         {
+            if (newEvents == null)
+            {
+                return;
+            }
             foreach (var e in newEvents)
             {
                 _events.Add(e.EventNumber, e);
