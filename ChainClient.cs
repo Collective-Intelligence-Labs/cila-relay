@@ -15,18 +15,24 @@ namespace Cila.OmniChain
         IEnumerable<OmniChainEvent> Pull(int position);
     }
 
-    [Function("pull")]
+    [Function("get")]
     public class PullFuncation: FunctionMessage
     {
-        [Parameter("uint", "_position", 1)]
-        public int Position {get;set;}
+        [Parameter("address", "aggregateId", 1)]
+        public string AggregateId {get;set;}
+
+        [Parameter("uint", "startIndex", 2)]
+        public int StartIndex {get;set;}
+
+        [Parameter("uint", "limit", 3)]
+        public int Limit {get;set;}
     }
 
-    [Function("push")]
+    [Function("sync")]
     public class PushFuncation: FunctionMessage
     {
-        [Parameter("string", "_aggregateId", 1)]
-        public string? AggregateId { get; set; }
+        [Parameter("address", "_aggregateId", 1)]
+        public string AggregateId { get; set; }
 
         [Parameter("uint", "_position", 2)]
         public int Position {get;set;}
@@ -47,19 +53,25 @@ namespace Cila.OmniChain
             _privateKey = privateKey;
             var account = new Nethereum.Web3.Accounts.Account(privateKey);
             _web3 = new Web3(account, rpc);
-            _handler = _web3.Eth.GetContractHandler(contract);
-            
+            _handler = _web3.Eth.GetContractHandler(contract);  
         }
+
+        public const int MAX_LIMIT = 1000000;
+        public const string AGGREGATE_ID = "0x0";
+
 
         public async Task<IEnumerable<OmniChainEvent>> Pull(int position)
         {
             var handler = _handler.GetFunction<PullFuncation>();
             var request = new PullFuncation{
-                Position = position
+                StartIndex = position,
+                Limit = MAX_LIMIT,
+                AggregateId = AGGREGATE_ID
             };
-            var eventsDto = await handler.CallAsync<PullEventsDTO>(request);
-            Console.WriteLine("Chain Service Pull executed: {0}", eventsDto);
-            return eventsDto.Events;
+            var result =  await handler.CallAsync<List<OmniChainEvent>>(request);
+            Console.WriteLine("Chain Service Pull executed: {0}", result);
+            return result;
+            //return eventsDto.Events;
         }
 
         public async Task<string> Push(int position, IEnumerable<OmniChainEvent> events)

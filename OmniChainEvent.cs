@@ -7,6 +7,8 @@ namespace Cila
         NFTMinted = 0,
         NFTTransfered = 1
     }
+
+    [FunctionOutput]
     public class OmniChainEvent
     {
         [Parameter("int", "t", 1)]
@@ -17,6 +19,5 @@ namespace Cila
 
         [Parameter("int", "eventNumber", 3)]
         public int EventNumber { get; set; }
-
     }
 }
