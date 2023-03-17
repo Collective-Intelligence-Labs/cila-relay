@@ -11,13 +11,13 @@ namespace Cila
     [FunctionOutput]
     public class OmniChainEvent
     {
-        [Parameter("int", "t", 1)]
+        [Parameter("uint", "t", 1)]
         public DomainEventType EventType {get;set;}
 
         [Parameter("bytes", "payload", 2)]
         public byte[] Payload {get;set;}
 
-        [Parameter("int", "eventNumber", 3)]
+        [Parameter("uint", "idx", 3)]
         public int EventNumber { get; set; }
     }
 }
